@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DAX Practice Exercises & Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .pbi-yellow {
+            background-color: #F2C811;
+        }
+
+        .text-pbi-yellow {
+            color: #F2C811;
+        }
+
+        .bg-pbi-dark {
+            background-color: #252423;
+        }
+
+        .exercise-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .solution-block {
+            display: none;
+            animation: slideDown 0.3s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-solution {
+            transition: all 0.2s ease;
+        }
+
+        .btn-solution.active {
+            background-color: #252423;
+            color: #F2C811;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-0">
+    <div class="w-full max-w-[1280px] min-h-[720px] bg-white shadow-2xl flex flex-col relative overflow-hidden">
+        <!-- Header -->
+        <div class="bg-pbi-dark text-white p-8 relative">
+            <div class="absolute top-0 left-0 w-full h-1 pbi-yellow"></div>
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div
+                        class="w-12 h-12 pbi-yellow rounded-lg flex items-center justify-center text-gray-900 shadow-lg">
+                        <i class="fas fa-check-double text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-extrabold tracking-tight">DAX Practice <span
+                                class="text-pbi-yellow">Solutions</span></h1>
+                        <p class="text-gray-400 text-sm uppercase tracking-widest font-semibold mt-1">Masterclass
+                            Workshop</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-3 bg-white/10 px-4 py-2 rounded-lg border border-white/20">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-pbi-yellow">Datasets:</span>
+                        <a href="Sales.csv" download
+                            class="text-[10px] font-bold hover:text-pbi-yellow transition-colors flex items-center gap-1">
+                            <i class="fas fa-file-csv"></i> SALES
+                        </a>
+                        <a href="Products.csv" download
+                            class="text-[10px] font-bold hover:text-pbi-yellow transition-colors flex items-center gap-1">
+                            <i class="fas fa-file-csv"></i> PRODUCTS
+                        </a>
+                        <a href="Customers.csv" download
+                            class="text-[10px] font-bold hover:text-pbi-yellow transition-colors flex items-center gap-1">
+                            <i class="fas fa-file-csv"></i> CUSTOMERS
+                        </a>
+                    </div>
+                    <a href="../index.html"
+                        class="text-xs font-bold text-gray-400 hover:text-pbi-yellow transition-colors flex items-center gap-2">
+                        <i class="fas fa-home"></i> HOME
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 bg-gray-50 p-10 overflow-y-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Phase 1 -->
+                <div class="space-y-4">
+                    <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                        <span class="w-2 h-6 pbi-yellow rounded-full"></span>
+                        Phase 1: Aggregation & Syntax
+                    </h2>
+                    <div class="space-y-3">
+                        <!-- Ex 1 -->
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">1. Total Sales</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Calculate the sum of <code
+                                    class="bg-gray-100 px-1 rounded">UnitPrice * Quantity</code>.</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-pbi-yellow">Total Sales</span> = <span
+                                    class="text-blue-400">SUMX</span>(Sales, Sales[UnitPrice] * Sales[Quantity])
+                            </div>
+                        </div>
+                        <!-- Ex 2 -->
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">2. Average Order Value</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Calculate the average amount per line item.</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-pbi-yellow">Average Order Value</span> = <span
+                                    class="text-blue-400">AVERAGE</span>(Sales[UnitPrice])
+                            </div>
+                        </div>
+                        <!-- Ex 3 -->
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">3. Transaction Count</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Count the total number of rows in the <code
+                                    class="bg-gray-100 px-1 rounded">Sales</code> table.</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-pbi-yellow">Order Count</span> = <span
+                                    class="text-blue-400">COUNTROWS</span>(Sales)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="space-y-4">
+                    <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                        <span class="w-2 h-6 pbi-yellow rounded-full"></span>
+                        Phase 2: Logical Functions
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">4. Order Size Category</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Calculated column: "Bulk" if Quantity > 5, else
+                                "Standard".</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-pbi-yellow">Order Size</span> = <span
+                                    class="text-green-400">IF</span>(Sales[Quantity] > <span
+                                    class="text-orange-300">5</span>, <span class="text-teal-300">"Bulk"</span>, <span
+                                    class="text-teal-300">"Standard"</span>)
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">5. Regional Bonus</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">5% bonus for "North", 3% for "South", 0% others.</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-pbi-yellow">Regional Bonus</span> = <br>
+                                <span class="text-green-400">SWITCH</span>(<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span
+                                    class="text-blue-400">RELATED</span>(Customers[Region]),<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-teal-300">"North"</span>, <span
+                                    class="text-orange-300">0.05</span>,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-teal-300">"South"</span>, <span
+                                    class="text-orange-300">0.03</span>,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">0</span><br>
+                                )
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="space-y-4">
+                    <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                        <span class="w-2 h-6 pbi-yellow rounded-full"></span>
+                        Phase 3: Text & Formatting
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">6. Customer Display</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Format into "Alice Smith (North)".</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-pbi-yellow">Customer Label</span> = Customers[CustomerName] & <span
+                                    class="text-teal-300">" ("</span> & Customers[Region] & <span
+                                    class="text-teal-300">")"</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">7. Price Label</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Format UnitPrice as currency.</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-pbi-yellow">Price Label</span> = <span
+                                    class="text-blue-400">FORMAT</span>(Sales[UnitPrice], <span
+                                    class="text-teal-300">"$#,##0"</span>)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="space-y-4">
+                    <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                        <span class="w-2 h-6 pbi-yellow rounded-full"></span>
+                        Phase 4: Date & Time
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">8. Days Since Order</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Calculate days since order date.</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-pbi-yellow">Days Since Order</span> = <span
+                                    class="text-blue-400">DATEDIFF</span>(Sales[OrderDate], <span
+                                    class="text-blue-400">TODAY</span>(), <span class="text-purple-300">DAY</span>)
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">9. Month End Status</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Check if order was on last day of month.</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-pbi-yellow">Is Month End</span> = <span
+                                    class="text-green-400">IF</span>(Sales[OrderDate] = <span
+                                    class="text-blue-400">EOMONTH</span>(Sales[OrderDate], <span
+                                    class="text-orange-300">0</span>), <span class="text-teal-300">"Yes"</span>, <span
+                                    class="text-teal-300">"No"</span>)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 5 -->
+                <div class="md:col-span-2 space-y-4">
+                    <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                        <span class="w-2 h-6 pbi-yellow rounded-full"></span>
+                        Phase 5: Advanced & Context
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">10. Total Sales (All Regions)</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Show totals regardless of filters.</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-pbi-yellow">Total Sales (All Regions)</span> = <span
+                                    class="text-blue-400">CALCULATE</span>([Total Sales], <span
+                                    class="text-blue-400">ALL</span>(Customers[Region]))
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
+                            <div class="flex justify-between items-start mb-2">
+                                <p class="font-bold text-gray-900">11. Profit Margin</p>
+                                <button onclick="toggleSolution(this)"
+                                    class="btn-solution text-[10px] uppercase font-bold px-3 py-1 rounded-full border border-gray-200 hover:border-pbi-yellow">Show
+                                    Solution</button>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">(Sales - Cost) / Sales. Handling zeros.</p>
+                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                                <span class="text-purple-300">VAR</span> TotalCost = <span
+                                    class="text-blue-400">SUMX</span>(Sales, <span
+                                    class="text-blue-400">RELATED</span>(Products[CostPrice]) * Sales[Quantity])<br>
+                                <span class="text-purple-300">RETURN</span> <span
+                                    class="text-blue-400">DIVIDE</span>([Total Sales] - TotalCost, [Total Sales])
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="h-14 bg-white border-t border-gray-200 flex items-center justify-between px-10">
+            <p class="text-xs text-gray-400 font-medium">
+                <i class="fas fa-magic text-pbi-yellow mr-1"></i> Practice makes perfect! Click "Show Solution" to
+                reveal the DAX formula.
+            </p>
+            <div class="flex items-center gap-4">
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Solutions v1.1</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSolution(btn) {
+            const card = btn.closest('.exercise-card');
+            const solution = card.querySelector('.solution-block');
+
+            if (solution.style.display === 'block') {
+                solution.style.display = 'none';
+                btn.innerText = 'Show Solution';
+                btn.classList.remove('active');
+            } else {
+                solution.style.display = 'block';
+                btn.innerText = 'Hide Solution';
+                btn.classList.add('active');
+            }
+        }
+    </script>
+</body>
+
+</html>
