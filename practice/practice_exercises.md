@@ -4,21 +4,21 @@ Based on the modules in your Masterclass slides, try to implement these formulas
 
 ## Phase 1: Aggregation & Syntax (Slide 04)
 
-### 1. Total Sales
+### 1. Total Sales (Measure)
 **Goal:** Create a measure to calculate the sum of total sales.
 **Solution:**
 ```dax
 Total Sales = SUMX(Sales, Sales[UnitPrice] * Sales[Quantity])
 ```
 
-### 2. Average Order Value
+### 2. Average Order Value (Measure)
 **Goal:** Calculate the average amount per line item.
 **Solution:**
 ```dax
 Average Order Value = AVERAGE(Sales[UnitPrice])
 ```
 
-### 3. Transaction Count
+### 3. Transaction Count (Measure)
 **Goal:** Count the total number of rows in the Sales table.
 **Solution:**
 ```dax
@@ -36,7 +36,7 @@ Order Count = COUNTROWS(Sales)
 Order Size = IF(Sales[Quantity] > 5, "Bulk", "Standard")
 ```
 
-### 5. Regional Bonus
+### 5. Regional Bonus (Calculated Column)
 **Goal:** Use SWITCH to return a bonus percentage based on region.
 **Solution:**
 ```dax
@@ -53,14 +53,14 @@ SWITCH(
 
 ## Phase 3: Text & Formatting (Slide 04)
 
-### 6. Customer Display
+### 6. Customer Display (Calculated Column)
 **Goal:** Combine name and region: "Alice Smith (North)".
 **Solution:**
 ```dax
 Customer Label = Customers[CustomerName] & " (" & Customers[Region] & ")"
 ```
 
-### 7. Price Label
+### 7. Price Label (Calculated Column)
 **Goal:** Format UnitPrice as a currency string.
 **Solution:**
 ```dax
@@ -71,14 +71,14 @@ Price Label = FORMAT(Sales[UnitPrice], "$#,##0")
 
 ## Phase 4: Date & Time (Slide 04/05)
 
-### 8. Days Since Order
+### 8. Days Since Order (Calculated Column)
 **Goal:** Calculate days since the order date.
 **Solution:**
 ```dax
 Days Since Order = DATEDIFF(Sales[OrderDate], TODAY(), DAY)
 ```
 
-### 9. Month End Status
+### 9. Month End Status (Calculated Column)
 **Goal:** Find if an order was placed on the last day of the month.
 **Solution:**
 ```dax
@@ -89,14 +89,14 @@ Is Month End = IF(Sales[OrderDate] = EOMONTH(Sales[OrderDate], 0), "Yes", "No")
 
 ## Phase 5: Advanced & Context (Slide 05/06)
 
-### 10. Total Sales (All Regions)
+### 10. Total Sales - All Regions (Measure)
 **Goal:** Show total sales regardless of the region filter.
 **Solution:**
 ```dax
 Total Sales (All Regions) = CALCULATE([Total Sales], ALL(Customers[Region]))
 ```
 
-### 11. Profit Margin
+### 11. Profit Margin (Measure)
 **Goal:** (Sales - Cost) / Sales. Handling zeros.
 **Solution:**
 ```dax
