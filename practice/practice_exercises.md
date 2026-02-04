@@ -106,13 +106,21 @@ Total Sales (All Regions) = CALCULATE([Total Sales], ALL(Customers[Region]))
 ```
 **Visual Suggestion:** Combined with [Total Sales] in a Bar Chart to show % of total.
 
-### 11. Profit Margin (Measure)
+### 11. Gross Profit Margin (Measure)
 **Goal:** (Sales - Cost) / Sales. Handling zeros.
 **Solution:**
 ```dax
-Profit Margin = 
-VAR TotalCost = SUMX(Sales, RELATED(Products[CostPrice]) * Sales[Quantity])
-
-RETURN DIVIDE([Total Sales] - TotalCost, [Total Sales])
+Gross Profit Margin = 
+VAR TotalCost = 
+    SUMX(
+        Sales, 
+        RELATED(Products[CostPrice]) * Sales[Quantity]
+    )
+RETURN 
+    DIVIDE(
+        [Total Sales] - TotalCost, 
+        [Total Sales], 
+        0
+    )
 ```
 **Visual Suggestion:** Gauge or Line Chart (Month over Month Margin).

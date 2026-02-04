@@ -398,7 +398,7 @@
                         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
                             <div class="flex justify-between items-start mb-2">
                                 <div class="flex items-center gap-2">
-                                    <p class="font-bold text-gray-900">11. Profit Margin</p>
+                                    <p class="font-bold text-gray-900">11. Gross Profit Margin</p>
                                     <span
                                         class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 uppercase">Measure</span>
                                 </div>
@@ -409,11 +409,20 @@
                             <p class="text-sm text-gray-600 mb-3">(Sales - Cost) / Sales. Handling zeros.</p>
                             <div
                                 class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white whitespace-pre-wrap">
-                                <span class="text-purple-300">VAR</span> TotalCost = <span
-                                    class="text-blue-400">SUMX</span>(Sales, <span
-                                    class="text-blue-400">RELATED</span>(Products[CostPrice]) * Sales[Quantity])<br><br>
-                                <span class="text-purple-300">RETURN</span> <span
-                                    class="text-blue-400">DIVIDE</span>([Total Sales] - TotalCost, [Total Sales])
+                                <span class="text-pbi-yellow">Gross Profit Margin</span> = <br>
+                                <span class="text-purple-300">VAR</span> TotalCost = <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">SUMX</span>(<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sales, <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                    class="text-blue-400">RELATED</span>(Products[CostPrice]) * Sales[Quantity]<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;)<br>
+                                <span class="text-purple-300">RETURN</span> <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">DIVIDE</span>(<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Total Sales] - TotalCost, <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Total Sales], <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                                    class="text-orange-300">0</span><br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;)
                             </div>
                             <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
                                 <i class="fas fa-lightbulb text-pbi-yellow"></i>
