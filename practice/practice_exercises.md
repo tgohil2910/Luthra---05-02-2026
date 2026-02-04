@@ -111,16 +111,45 @@ Total Sales (All Regions) = CALCULATE([Total Sales], ALL(Customers[Region]))
 **Solution:**
 ```dax
 Gross Profit Margin = 
-VAR TotalCost = 
-    SUMX(
-        Sales, 
-        RELATED(Products[CostPrice]) * Sales[Quantity]
-    )
-RETURN 
-    DIVIDE(
-        [Total Sales] - TotalCost, 
-        [Total Sales], 
-        0
-    )
+VAR TotalCost = SUMX(Sales, RELATED(Products[CostPrice]) * Sales[Quantity])
+RETURN DIVIDE([Total Sales] - TotalCost, [Total Sales], 0)
 ```
 **Visual Suggestion:** Gauge or Line Chart (Month over Month Margin).
+
+---
+
+# Step-by-Step Dashboard Building Guide
+
+Follow these steps to build a professional-grade Sales Dashboard using all the DAX formulas practiced above.
+
+## Phase 1: Data Preparation & Modeling
+1. **Load Data:** Import the three CSV files (`Sales.csv`, `Products.csv`, `Customers.csv`) into Power BI Desktop using "Get Data".
+2. **Setup Relationships:** Go to the **Model View** and ensure the following connections are active:
+   * **Sales[ProductID]** → **Products[ProductID]** (Many-to-One)
+   * **Sales[CustomerID]** → **Customers[CustomerID]** (Many-to-One)
+3. **Hide IDs:** Right-click the ID columns in the Model view and select "Hide in Report View" to keep your fields list clean.
+
+## Phase 2: Logic Implementation (DAX)
+1. **Calculated Columns:** Create these first on the tables:
+   * `Order Size`, `Regional Bonus`, `Price Label`, `Days Since Order`, `Is Month End` (on **Sales** table).
+   * `Customer Label` (on **Customers** table).
+2. **Measures:** Create a separate table called "Key Measures" (Enter Data > Name it "Key Measures") and create:
+   * `Total Sales`, `Average Order Value`, `Order Count`, `Total Sales - All Regions`, and `Gross Profit Margin`.
+
+## Phase 3: Dashboard Layout & Visualization
+1. **Header Layer:**
+   * Place a **Text Box** at the top: "Executive Sales Overview".
+   * Add a **Slicer** using `Customers[Region]` or your `Is Month End` column for filtering.
+2. **Main KPI Layer:**
+   * Use **Card Visuals** for `Total Sales`, `Order Count`, and `Average Order Value`.
+   * Use a **Gauge Visual** for `Gross Profit Margin`.
+3. **Analysis Layer:**
+   * **Area Chart:** `Total Sales` by `OrderDate`.
+   * **Donut Chart:** `Order Count` by `Order Size Category`.
+   * **Clustered Bar Chart:** `Total Sales` vs `Total Sales - All Regions` by `Region` (to see market share).
+4. **Detail Layer:**
+   * **Table Visual:** List `Customer Label`, `Total Sales`, and `Gross Profit Margin`.
+
+## Phase 4: Polish
+1. **Formatting:** Ensure currency columns are formatted as "$ Currency" and percentages as "%".
+2. **Themes:** Go to the "View" tab and select a professional dark or corporate theme to make your visuals pop.

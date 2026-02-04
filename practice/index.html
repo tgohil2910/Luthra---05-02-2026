@@ -407,22 +407,14 @@
                                     Solution</button>
                             </div>
                             <p class="text-sm text-gray-600 mb-3">(Sales - Cost) / Sales. Handling zeros.</p>
-                            <div
-                                class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white whitespace-pre-wrap">
+                            <div class="solution-block bg-gray-900 rounded-lg p-5 font-mono text-xs text-white ">
                                 <span class="text-pbi-yellow">Gross Profit Margin</span> = <br>
-                                <span class="text-purple-300">VAR</span> TotalCost = <br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">SUMX</span>(<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sales, <br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                                    class="text-blue-400">RELATED</span>(Products[CostPrice]) * Sales[Quantity]<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;)<br>
-                                <span class="text-purple-300">RETURN</span> <br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">DIVIDE</span>(<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Total Sales] - TotalCost, <br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Total Sales], <br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                                    class="text-orange-300">0</span><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;)
+                                <span class="text-purple-300">VAR</span> TotalCost = <span
+                                    class="text-blue-400">SUMX</span>(Sales, <span
+                                    class="text-blue-400">RELATED</span>(Products[CostPrice]) * Sales[Quantity])<br>
+                                <span class="text-purple-300">RETURN</span> <span
+                                    class="text-blue-400">DIVIDE</span>([Total Sales] - TotalCost, [Total Sales], <span
+                                    class="text-orange-300">0</span>)
                             </div>
                             <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
                                 <i class="fas fa-lightbulb text-pbi-yellow"></i>
@@ -432,37 +424,38 @@
                     </div>
                 </div>
 
+
+
+            </div>
+
+            <!-- Footer -->
+            <div class="h-14 bg-white border-t border-gray-200 flex items-center justify-between px-10">
+                <p class="text-xs text-gray-400 font-medium">
+                    <i class="fas fa-magic text-pbi-yellow mr-1"></i> Practice makes perfect! Click "Show Solution" to
+                    reveal the DAX formula.
+                </p>
+                <div class="flex items-center gap-4">
+                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Solutions v1.1</p>
+                </div>
             </div>
         </div>
 
-        <!-- Footer -->
-        <div class="h-14 bg-white border-t border-gray-200 flex items-center justify-between px-10">
-            <p class="text-xs text-gray-400 font-medium">
-                <i class="fas fa-magic text-pbi-yellow mr-1"></i> Practice makes perfect! Click "Show Solution" to
-                reveal the DAX formula.
-            </p>
-            <div class="flex items-center gap-4">
-                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Solutions v1.1</p>
-            </div>
-        </div>
-    </div>
+        <script>
+            function toggleSolution(btn) {
+                const card = btn.closest('.exercise-card');
+                const solution = card.querySelector('.solution-block');
 
-    <script>
-        function toggleSolution(btn) {
-            const card = btn.closest('.exercise-card');
-            const solution = card.querySelector('.solution-block');
-
-            if (solution.style.display === 'block') {
-                solution.style.display = 'none';
-                btn.innerText = 'Show Solution';
-                btn.classList.remove('active');
-            } else {
-                solution.style.display = 'block';
-                btn.innerText = 'Hide Solution';
-                btn.classList.add('active');
+                if (solution.style.display === 'block') {
+                    solution.style.display = 'none';
+                    btn.innerText = 'Show Solution';
+                    btn.classList.remove('active');
+                } else {
+                    solution.style.display = 'block';
+                    btn.innerText = 'Hide Solution';
+                    btn.classList.add('active');
+                }
             }
-        }
-    </script>
+        </script>
 </body>
 
 </html>

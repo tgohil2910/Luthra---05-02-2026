@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Dashboard Build Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .pbi-yellow {
+            background-color: #F2C811;
+        }
+
+        .text-pbi-yellow {
+            color: #F2C811;
+        }
+
+        .bg-pbi-dark {
+            background-color: #252423;
+        }
+
+        input[type="checkbox"] {
+            appearance: none;
+            background-color: #fff;
+            width: 1.25em;
+            height: 1.25em;
+            border: 2px solid #252423;
+            border-radius: 0.25em;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em #F2C811;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        input[type="checkbox"]:checked::before {
+            transform: scale(1);
+        }
+
+        input[type="checkbox"]:checked+label {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 p-6 md:p-12">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-200">
+        <div class="bg-pbi-dark p-8 text-white relative">
+            <div class="absolute top-0 left-0 w-full h-1 pbi-yellow"></div>
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 pbi-yellow rounded-lg flex items-center justify-center text-gray-900">
+                    <i class="fas fa-chart-line text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-extrabold tracking-tight">Executive Dashboard <span
+                            class="text-pbi-yellow">Build Steps</span></h1>
+                    <p class="text-gray-400 text-sm uppercase tracking-widest font-semibold mt-1">Focusing on Trend
+                        Analysis & KPI Integrity</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-8 space-y-10">
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-800 flex items-center gap-3 mb-6">
+                    <span class="w-2 h-8 pbi-yellow rounded-full"></span>
+                    1. The Executive Summary (Top Row)
+                </h2>
+                <div class="grid gap-4 ml-5">
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                        <div class="flex items-start gap-4">
+                            <input type="checkbox" id="exec-1">
+                            <label for="exec-1" class="text-gray-700 leading-tight cursor-pointer font-bold">Total Sales
+                                (KPI Card)</label>
+                        </div>
+                        <ul class="mt-3 ml-9 text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-arrow-right text-pbi-yellow mr-2"></i><b>Indicator:</b>
+                                <code>[Total Sales]</code></li>
+                            <li><i class="fas fa-arrow-right text-pbi-yellow mr-2"></i><b>Trend Axis:</b>
+                                <code>Sales[OrderDate]</code> (Drag the Date field)</li>
+                            <li><i class="fas fa-arrow-right text-pbi-yellow mr-2"></i><b>Goal:</b>
+                                <code>[Total Sales (All Regions)]</code> (Optional Target)</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                        <div class="flex items-start gap-4">
+                            <input type="checkbox" id="exec-2">
+                            <label for="exec-2" class="text-gray-700 leading-tight cursor-pointer font-bold">Order
+                                Volume (KPI Card)</label>
+                        </div>
+                        <ul class="mt-3 ml-9 text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-arrow-right text-pbi-yellow mr-2"></i><b>Indicator:</b>
+                                <code>[Order Count]</code></li>
+                            <li><i class="fas fa-arrow-right text-pbi-yellow mr-2"></i><b>Trend Axis:</b>
+                                <code>Sales[OrderDate]</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                        <div class="flex items-start gap-4">
+                            <input type="checkbox" id="exec-3">
+                            <label for="exec-3" class="text-gray-700 leading-tight cursor-pointer font-bold">Profit
+                                Margin (KPI Card)</label>
+                        </div>
+                        <ul class="mt-3 ml-9 text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-arrow-right text-pbi-yellow mr-2"></i><b>Indicator:</b>
+                                <code>[Gross Profit Margin]</code></li>
+                            <li><i class="fas fa-arrow-right text-pbi-yellow mr-2"></i><b>Format:</b> Percentage (%)
+                                with 1 decimal place.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-800 flex items-center gap-3 mb-6">
+                    <span class="w-2 h-8 pbi-yellow rounded-full"></span>
+                    2. Trends & Segmentation (Middle Row)
+                </h2>
+                <div class="grid gap-4 ml-5">
+                    <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <input type="checkbox" id="trend-1">
+                        <label for="trend-1" class="text-gray-700 leading-tight cursor-pointer">
+                            <strong>Sales Trend (Area Chart):</strong> <code>OrderDate</code> (X-Axis) and
+                            <code>[Total Sales]</code> (Y-Axis).
+                        </label>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <input type="checkbox" id="trend-2">
+                        <label for="trend-2" class="text-gray-700 leading-tight cursor-pointer">
+                            <strong>Order Size (Donut Chart):</strong> <code>Sales[Order Size]</code> (Legend) and
+                            <code>[Order Count]</code> (Values).
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-xl font-bold text-gray-800 flex items-center gap-3 mb-6">
+                    <span class="w-2 h-8 pbi-yellow rounded-full"></span>
+                    3. Deep Dive Analysis (Bottom Row)
+                </h2>
+                <div class="grid gap-4 ml-5">
+                    <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <input type="checkbox" id="dive-1">
+                        <label for="dive-1" class="text-gray-700 leading-tight cursor-pointer">
+                            <strong>Product Profitability (Scatter):</strong> <code>ProductName</code> (Values),
+                            <code>Total Sales</code> (X), <code>Margin %</code> (Y).
+                        </label>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                        <input type="checkbox" id="dive-2">
+                        <label for="dive-2" class="text-gray-700 leading-tight cursor-pointer">
+                            <strong>Regional Insights (Table):</strong> Rows: <code>[Customer Label]</code>. Values:
+                            <code>Total Sales</code>, <code>Total Sales (All Regions)</code>,
+                            <code>Regional Bonus</code>.
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-gray-900 text-white p-6 rounded-2xl shadow-inner border-b-4 border-pbi-yellow">
+                <h3 class="text-pbi-yellow font-bold uppercase tracking-widest text-xs mb-4">Required Interactivity</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div class="flex items-center gap-3"><i class="fas fa-calendar-alt text-gray-400"></i> Date Slicer:
+                        <code>Sales[OrderDate]</code></div>
+                    <div class="flex items-center gap-3"><i class="fas fa-toggle-on text-gray-400"></i> Month-End
+                        Toggle: <code>Sales[Is Month End]</code></div>
+                </div>
+            </section>
+        </div>
+
+        <div class="bg-gray-50 border-t border-gray-200 p-6 flex justify-between items-center">
+            <p class="text-xs text-gray-500 font-medium italic">Dashboard Build v1.2</p>
+            <button onclick="window.print()"
+                class="text-xs font-bold bg-pbi-dark text-white px-4 py-2 rounded-lg hover:scale-105 transition-all">
+                <i class="fas fa-print mr-2"></i> PRINT CHECKLIST
+            </button>
+        </div>
+    </div>
+
+</body>
+
+</html>
