@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Thank You - Power BI DAX Masterclass</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .pbi-yellow {
+            background-color: #F2C811;
+        }
+
+        .text-pbi-yellow {
+            color: #F2C811;
+        }
+
+        .bg-pbi-dark {
+            background-color: #252423;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #252423 0%, #3a3938 100%);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px border rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-0">
+    <div class="w-full max-w-[1280px] min-h-[720px] bg-white shadow-2xl flex flex-col relative">
+        <!-- Hero/Main Content -->
+        <div
+            class="flex-1 min-h-0 hero-gradient flex flex-col items-center justify-center text-center p-16 relative overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-yellow-500 rounded-full opacity-5 blur-[120px]"></div>
+            <div class="absolute -top-32 -right-32 w-96 h-96 bg-blue-500 rounded-full opacity-5 blur-[120px]"></div>
+            <div class="absolute top-0 left-0 w-full h-1 pbi-yellow"></div>
+
+            <div class="relative z-10 max-w-3xl">
+                <!-- Success Icon -->
+                <div
+                    class="w-24 h-24 bg-pbi-yellow rounded-full flex items-center justify-center text-gray-900 shadow-2xl mb-8 mx-auto animate-scale-in">
+                    <i class="fas fa-check text-4xl"></i>
+                </div>
+
+                <h1 class="text-7xl font-extrabold text-white mb-6 animate-fade-in-up" style="animation-delay: 0.1s;">
+                    Thank <span class="text-pbi-yellow">You!</span>
+                </h1>
+
+                <p class="text-2xl text-gray-300 font-light mb-12 animate-fade-in-up" style="animation-delay: 0.2s;">
+                    We hope this guest lecture provided valuable insights into the power of <span
+                        class="font-bold text-white">DAX</span> and <span class="font-bold text-white">Power BI</span>.
+                </p>
+
+                <!-- Speaker Recognition -->
+                <div class="inline-flex flex-col items-center animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <div
+                        class="flex items-center gap-4 bg-white/5 px-8 py-4 rounded-2xl border border-white/10 glass-card">
+                        <div
+                            class="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center border-2 border-pbi-yellow">
+                            <i class="fas fa-user-tie text-xl text-pbi-yellow"></i>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-lg font-bold text-white leading-tight">Prof. Tushar Gohil</h3>
+                            <p class="text-xs text-gray-400">Assistant Professor</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mt-4 font-medium tracking-wide">
+                        Sarvajanik College of Engineering and Technology
+                    </p>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="mt-16 flex gap-6 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <a href="page0.html"
+                        class="px-8 py-3 bg-pbi-yellow text-gray-900 font-bold rounded-full hover:bg-yellow-400 transition-colors flex items-center gap-2 group">
+                        <i class="fas fa-home group-hover:-translate-x-1 transition-transform"></i>
+                        Back to Home
+                    </a>
+                    <a href="page6.html"
+                        class="px-8 py-3 bg-white/10 text-white font-bold rounded-full border border-white/20 hover:bg-white/20 transition-colors flex items-center gap-2 group">
+                        <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                        Previous Module
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Detail Strip -->
+        <div class="h-24 bg-white flex items-center justify-between px-16 z-10 flex-shrink-0">
+            <div class="flex items-center gap-4">
+                <div class="text-pbi-yellow">
+                    <i class="fas fa-graduation-cap text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Mastery Achieved</p>
+                    <p class="text-sm font-bold text-gray-800">Introduction to DAX Essentials</p>
+                </div>
+            </div>
+
+            <div class="flex gap-4">
+                <div class="flex flex-col items-end">
+                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Reference</p>
+                    <p class="text-xs font-medium text-gray-600">Guest Lecture Series • Feb 2026</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

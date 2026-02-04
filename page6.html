@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Row Context vs Filter Context</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .pbi-yellow {
+            background-color: #F2C811;
+        }
+
+        .text-pbi-yellow {
+            color: #F2C811;
+        }
+
+        .bg-pbi-dark {
+            background-color: #252423;
+        }
+
+        .border-pbi-dark {
+            border-color: #252423;
+        }
+
+        /* Syntax highlighting */
+        .code-bg {
+            background-color: #1E1E1E;
+        }
+
+        .syn-kwd {
+            color: #C586C0;
+        }
+
+        .syn-func {
+            color: #569CD6;
+        }
+
+        .syn-table {
+            color: #4EC9B0;
+        }
+
+        .syn-col {
+            color: #9CDCFE;
+        }
+
+        .syn-str {
+            color: #CE9178;
+        }
+
+        .syn-num {
+            color: #B5CEA8;
+        }
+
+        .syn-comment {
+            color: #6A9955;
+            font-style: italic;
+        }
+
+        /* Diagram lines */
+        .arrow-right::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            border-width: 10px 0 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent transparent #E5E7EB;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-0">
+    <div class="w-full max-w-[1280px] min-h-[720px] bg-white shadow-2xl flex flex-col relative">
+        <!-- Header -->
+        <div
+            class="h-24 bg-white border-b border-gray-200 flex items-center px-12 justify-between z-10 relative flex-shrink-0">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 pbi-yellow rounded flex items-center justify-center text-gray-900 shadow-sm">
+                    <i class="fas fa-network-wired text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Row Context vs. Filter Context</h1>
+                    <p class="text-sm text-gray-500 mt-1 font-medium uppercase tracking-wider">Evaluation Logic &amp;
+                        Propagation</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="bg-gray-100 px-3 py-1 rounded text-xs font-semibold text-gray-500">
+                    PART 06
+                </div>
+            </div>
+            <div class="absolute top-0 left-0 w-full h-1 pbi-yellow"></div>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 p-8 bg-gray-50 overflow-hidden flex flex-col gap-6">
+            <!-- Context Comparison Section (Top Half) -->
+            <div class="flex gap-6 h-[280px]">
+                <!-- Row Context Card -->
+                <div
+                    class="flex-1 bg-white rounded-lg border-l-4 border-blue-500 shadow-sm flex flex-col overflow-hidden">
+                    <div class="p-5 border-b border-gray-100 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                                <i class="fas fa-list text-blue-500"></i> Row Context
+                            </h3>
+                            <p class="text-xs text-gray-500 mt-1 font-medium uppercase tracking-wide">"The Current Row"
+                            </p>
+                        </div>
+                        <div class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded font-bold">Iterators &amp;
+                            Columns</div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                            Refers to the current row during an iteration. It does <strong>not</strong> filter the model
+                            automatically, but allows you to reference columns for that specific row.
+                        </p>
+                        <div class="code-bg rounded p-3 shadow-inner font-mono text-xs">
+                            <p class="text-gray-400 mb-1">// Calculated Column or Iterator</p>
+                            <p class="text-white">
+                                <span class="syn-func">SUMX</span>( <span class="syn-table">'Sales'</span>, <span
+                                    class="syn-table">'Sales'</span>[Qty] * <span
+                                    class="syn-table">'Sales'</span>[Price] )
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Transformation / Transition Visual -->
+                <div class="w-24 flex flex-col items-center justify-center relative">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-full h-1 bg-gray-200"></div>
+                    </div>
+                    <div
+                        class="bg-white border-2 border-purple-500 rounded-full w-12 h-12 flex items-center justify-center z-10 shadow-md">
+                        <i class="fas fa-random text-purple-600"></i>
+                    </div>
+                    <div
+                        class="bg-gray-800 text-white text-[10px] px-2 py-1 rounded mt-2 z-10 font-bold uppercase tracking-wider">
+                        Context Transition
+                    </div>
+                    <p class="text-[9px] text-gray-500 text-center mt-1 bg-white px-1 z-10">Triggered by <br />CALCULATE
+                    </p>
+                </div>
+                <!-- Filter Context Card -->
+                <div
+                    class="flex-1 bg-white rounded-lg border-l-4 border-yellow-500 shadow-sm flex flex-col overflow-hidden">
+                    <div class="p-5 border-b border-gray-100 flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                                <i class="fas fa-filter text-yellow-600"></i> Filter Context
+                            </h3>
+                            <p class="text-xs text-gray-500 mt-1 font-medium uppercase tracking-wide">"The Active View"
+                            </p>
+                        </div>
+                        <div class="bg-yellow-50 text-yellow-700 text-xs px-2 py-1 rounded font-bold">Measures &amp;
+                            Visuals</div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+                            The set of filters applied to the data model at evaluation time (via slicers, visuals, or
+                            DAX). It constrains the set of rows available for calculation.
+                        </p>
+                        <div class="code-bg rounded p-3 shadow-inner font-mono text-xs">
+                            <p class="text-gray-400 mb-1">// Measure calculation</p>
+                            <p class="text-white">
+                                <span class="syn-func">CALCULATE</span>( [<span class="syn-col">Total Sales</span>],
+                                <span class="syn-table">'Product'</span>[Color]=<span class="syn-str">"Red"</span> )
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Section (Bottom Half) -->
+            <div class="flex-1 grid grid-cols-3 gap-6">
+                <!-- Propagation Concept -->
+                <div
+                    class="col-span-2 bg-white rounded-lg border border-gray-200 shadow-sm p-6 relative overflow-hidden">
+                    <h3
+                        class="text-sm font-bold text-gray-800 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">
+                        <i class="fas fa-project-diagram text-gray-400 mr-2"></i>Relationship Propagation
+                    </h3>
+                    <div class="flex items-center justify-between h-24 px-4">
+                        <!-- Table 1 -->
+                        <div class="border-2 border-gray-300 rounded bg-gray-50 p-3 w-32 text-center relative">
+                            <div class="text-xs font-bold text-gray-700">DimTable</div>
+                            <div class="text-[10px] text-gray-500">(One Side)</div>
+                            <div
+                                class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-green-100 text-green-700 text-[9px] px-1 rounded border border-green-200">
+                                Filtered</div>
+                        </div>
+                        <!-- Arrow -->
+                        <div class="flex-1 flex flex-col items-center px-4">
+                            <div class="w-full h-0.5 bg-gray-300 relative">
+                                <div
+                                    class="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-8 border-t-transparent border-b-transparent border-l-gray-300">
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-gray-400 mt-1 text-center">Filters flow downhill<br />(1 to Many)
+                            </p>
+                        </div>
+                        <!-- Table 2 -->
+                        <div class="border-2 border-gray-300 rounded bg-gray-50 p-3 w-32 text-center relative">
+                            <div class="text-xs font-bold text-gray-700">FactTable</div>
+                            <div class="text-[10px] text-gray-500">(Many Side)</div>
+                            <div
+                                class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-green-100 text-green-700 text-[9px] px-1 rounded border border-green-200">
+                                Restricted</div>
+                        </div>
+                    </div>
+                    <div
+                        class="mt-2 bg-blue-50 border border-blue-100 p-2 rounded text-xs text-blue-800 flex items-start gap-2">
+                        <i class="fas fa-info-circle mt-0.5"></i>
+                        <p><strong>Note:</strong> Row context does NOT propagate through relationships automatically.
+                            Only Filter context propagates.</p>
+                    </div>
+                </div>
+                <!-- Troubleshooting Tips -->
+                <div class="bg-pbi-dark rounded-lg shadow-lg p-6 text-white flex flex-col">
+                    <h3
+                        class="text-sm font-bold text-pbi-yellow uppercase tracking-wider mb-4 border-b border-gray-700 pb-2">
+                        <i class="fas fa-bug mr-2"></i>Troubleshooting
+                    </h3>
+                    <ul class="space-y-3 text-sm text-gray-300 flex-1">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-exclamation-triangle text-yellow-500 mt-1"></i>
+                            <p>Totals look wrong? Check for missing <strong>Filter Context</strong>.</p>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-magic text-purple-400 mt-1"></i>
+                            <p>Context Transition: Are you using measures inside columns?</p>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-eraser text-red-400 mt-1"></i>
+                            <p>Use <strong>ALL()</strong> or <strong>REMOVEFILTERS()</strong> to debug specific filters.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="h-12 bg-white border-t border-gray-200 flex items-center justify-between px-12 z-10 flex-shrink-0">
+            <div class="flex items-center gap-4">
+                <a href="page5.html"
+                    class="text-xs font-bold text-gray-500 hover:text-pbi-yellow transition-colors flex items-center gap-2">
+                    <i class="fas fa-chevron-left"></i> BACK
+                </a>
+                <div class="h-4 w-px bg-gray-200"></div>
+                <a href="page0.html"
+                    class="text-xs font-bold text-gray-500 hover:text-pbi-yellow transition-colors flex items-center gap-2">
+                    <i class="fas fa-home"></i> HOME
+                </a>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-pbi-yellow"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <p class="text-xs text-gray-400">06 / 07</p>
+                <div class="h-4 w-px bg-gray-200"></div>
+                <a href="page7.html"
+                    class="bg-pbi-yellow text-gray-900 text-[10px] px-4 py-1 rounded-full font-bold hover:bg-yellow-400 transition-colors uppercase tracking-wider flex items-center gap-1">
+                    Finish <i class="fas fa-chevron-right text-[8px]"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

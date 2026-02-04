@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Introduction to DAX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Roboto+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .pbi-yellow {
+            background-color: #F2C811;
+            color: #000;
+        }
+
+        .text-pbi-yellow {
+            color: #F2C811;
+        }
+
+        .pbi-dark {
+            background-color: #252423;
+        }
+
+        .border-pbi-yellow {
+            border-color: #F2C811;
+        }
+
+        /* Syntax highlighting colors */
+        .syn-func {
+            color: #569CD6;
+        }
+
+        /* Blue for functions */
+        .syn-table {
+            color: #4EC9B0;
+        }
+
+        /* Teal for tables */
+        .syn-col {
+            color: #DCDCAA;
+        }
+
+        /* Light yellow for columns */
+        .syn-str {
+            color: #CE9178;
+        }
+
+        /* Orange for strings */
+        .syn-comment {
+            color: #6A9955;
+        }
+
+        /* Green for comments */
+        .syn-keyword {
+            color: #C586C0;
+        }
+
+        /* Purple for keywords */
+    </style>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-0">
+    <div class="w-full max-w-[1280px] min-h-[720px] bg-white shadow-2xl flex flex-col relative">
+        <!-- Header Section -->
+        <div
+            class="h-24 bg-white border-b border-gray-200 flex items-center px-12 justify-between z-10 relative flex-shrink-0">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 pbi-yellow rounded flex items-center justify-center text-gray-900 shadow-sm">
+                    <i class="fas fa-code text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800 tracking-tight">Introduction to DAX</h1>
+                    <p class="text-sm text-gray-500 font-medium uppercase tracking-wider">Importance, Syntax &amp; Data
+                        Types</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="bg-gray-100 px-3 py-1 rounded text-xs font-semibold text-gray-500">
+                    PART 01
+                </div>
+            </div>
+            <!-- Yellow accent line top -->
+            <div class="absolute top-0 left-0 w-full h-1 pbi-yellow"></div>
+        </div>
+        <!-- Main Content Area -->
+        <div class="flex-1 flex overflow-hidden">
+            <!-- Left Panel: Concepts & Importance -->
+            <div class="w-1/2 p-12 flex flex-col justify-start space-y-8 bg-gray-50 relative">
+                <!-- Importance Block -->
+                <div class="animate-fade-in-up">
+                    <h3
+                        class="flex items-center text-lg font-bold text-gray-800 mb-4 border-l-4 border-pbi-yellow pl-3">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i> Why DAX Matters?
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        DAX (Data Analysis Expressions) allows you to create new information from data already in your
+                        model. It enables:
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <p class="text-gray-700 text-sm"><strong>Dynamic Aggregations:</strong> Calculate KPIs that
+                                respond to slicers and filters.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <p class="text-gray-700 text-sm"><strong>Time Intelligence:</strong> Effortlessly compute
+                                YTD, YoY growth, and moving averages.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <p class="text-gray-700 text-sm"><strong>Relationship Navigation:</strong> Pull values from
+                                related tables without VLOOKUPs.</p>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Data Types Block -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 mt-auto">
+                    <h3 class="text-md font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-database text-blue-500 mr-2"></i> Common Data Types
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                            <p class="text-sm text-gray-600">Whole Number / Decimal</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                            <p class="text-sm text-gray-600">Currency</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                            <p class="text-sm text-gray-600">Date / Time</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+                            <p class="text-sm text-gray-600">Text (String)</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                            <p class="text-sm text-gray-600">Boolean (True/False)</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+                            <p class="text-sm text-gray-600">Blank (Null)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Panel: Code & Syntax Visual -->
+            <div class="w-1/2 pbi-dark text-white p-12 flex flex-col justify-center relative">
+                <!-- Decorative Circle -->
+                <div class="absolute top-10 right-10 w-32 h-32 bg-yellow-500 rounded-full opacity-5 blur-2xl"></div>
+                <!-- Syntax Breakdown -->
+                <div class="mb-10">
+                    <h3
+                        class="text-yellow-400 font-bold uppercase tracking-widest text-sm mb-6 border-b border-gray-700 pb-2">
+                        Anatomy of a Formula
+                    </h3>
+                    <div class="relative bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700 font-mono text-lg">
+                        <!-- Code Line -->
+                        <div class="flex flex-wrap items-baseline gap-1 relative z-10">
+                            <span class="text-white font-bold relative group cursor-help">
+                                Total Sales
+                                <span
+                                    class="absolute -top-8 left-0 text-xs bg-white text-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Measure
+                                    Name</span>
+                            </span>
+                            <span class="text-gray-400">=</span>
+                            <span class="syn-func font-bold relative group cursor-help">
+                                SUM
+                                <span
+                                    class="absolute -top-8 left-0 text-xs bg-blue-500 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Function</span>
+                            </span>
+                            <span class="text-yellow-500">(</span>
+                            <span class="syn-table relative group cursor-help">
+                                'Sales'
+                                <span
+                                    class="absolute -bottom-8 left-0 text-xs bg-teal-600 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Table
+                                    Name</span>
+                            </span>
+                            <span class="syn-col relative group cursor-help">
+                                [SalesAmount]
+                                <span
+                                    class="absolute -bottom-8 left-0 text-xs bg-yellow-700 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Column
+                                    Name</span>
+                            </span>
+                            <span class="text-yellow-500">)</span>
+                        </div>
+                        <!-- Connecting lines visual aid (SVG overlay would be complex, using CSS borders/positioning instead) -->
+                        <div class="mt-6 pt-4 border-t border-gray-700 text-xs text-gray-400 flex justify-between">
+                            <p class="w-1/4">Name of the calculation</p>
+                            <p class="w-1/4 text-center">Aggregation logic</p>
+                            <p class="w-1/3 text-right">Target data column</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Advanced Syntax Example -->
+                <div>
+                    <h3 class="text-yellow-400 font-bold uppercase tracking-widest text-sm mb-4">
+                        Nesting &amp; Logic Example
+                    </h3>
+                    <div
+                        class="bg-[#1e1e1e] p-6 rounded-lg border-l-4 border-yellow-500 font-mono text-sm leading-relaxed overflow-x-auto shadow-lg">
+                        <p>
+                            <span class="syn-comment">// Calculate Previous Quarter Sales</span><br />
+                            <span class="text-white">PQ Sales</span> <span class="text-gray-400">=</span> <br />
+                            <span class="pl-4 syn-func">CALCULATE</span><span class="text-yellow-500">(</span><br />
+                            <span class="pl-8 syn-func">SUM</span><span class="text-purple-400">(</span> <span
+                                class="syn-table">'Sales'</span><span class="syn-col">[Amount]</span> <span
+                                class="text-purple-400">)</span><span class="text-gray-300">,</span><br />
+                            <span class="pl-8 syn-func">PREVIOUSQUARTER</span><span class="text-purple-400">(</span>
+                            <span class="syn-table">'Date'</span><span class="syn-col">[Date]</span> <span
+                                class="text-purple-400">)</span><br />
+                            <span class="pl-4 text-yellow-500">)</span>
+                        </p>
+                    </div>
+                    <p class="mt-4 text-gray-400 text-xs italic">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Best Practice: Always format code with indentation for readability.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="h-12 bg-white border-t border-gray-200 flex items-center justify-between px-12 z-10 flex-shrink-0">
+            <div class="flex items-center gap-4">
+                <a href="page1.html"
+                    class="text-xs font-bold text-gray-500 hover:text-pbi-yellow transition-colors flex items-center gap-2">
+                    <i class="fas fa-chevron-left"></i> BACK
+                </a>
+                <div class="h-4 w-px bg-gray-200"></div>
+                <a href="page0.html"
+                    class="text-xs font-bold text-gray-500 hover:text-pbi-yellow transition-colors flex items-center gap-2">
+                    <i class="fas fa-home"></i> HOME
+                </a>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-pbi-yellow"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+                <span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <p class="text-xs text-gray-400">02 / 07</p>
+                <div class="h-4 w-px bg-gray-200"></div>
+                <a href="page3.html"
+                    class="bg-pbi-yellow text-gray-900 text-[10px] px-4 py-1 rounded-full font-bold hover:bg-yellow-400 transition-colors uppercase tracking-wider flex items-center gap-1">
+                    NEXT <i class="fas fa-chevron-right text-[8px]"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
