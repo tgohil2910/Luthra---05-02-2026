@@ -10,6 +10,7 @@ Based on the modules in your Masterclass slides, try to implement these formulas
 ```dax
 Total Sales = SUMX(Sales, Sales[UnitPrice] * Sales[Quantity])
 ```
+**Visual Suggestion:** Card or Area Chart (Trend over time).
 
 ### 2. Average Order Value (Measure)
 **Goal:** Calculate the average amount per line item.
@@ -17,6 +18,7 @@ Total Sales = SUMX(Sales, Sales[UnitPrice] * Sales[Quantity])
 ```dax
 Average Order Value = AVERAGE(Sales[UnitPrice])
 ```
+**Visual Suggestion:** Card or Gauge Chart.
 
 ### 3. Transaction Count (Measure)
 **Goal:** Count the total number of rows in the Sales table.
@@ -24,6 +26,7 @@ Average Order Value = AVERAGE(Sales[UnitPrice])
 ```dax
 Order Count = COUNTROWS(Sales)
 ```
+**Visual Suggestion:** Card or KPI Visual.
 
 ---
 
@@ -35,6 +38,7 @@ Order Count = COUNTROWS(Sales)
 ```dax
 Order Size = IF(Sales[Quantity] > 5, "Bulk", "Standard")
 ```
+**Visual Suggestion:** Pie Chart or Donut Chart (to show distribution of orders).
 
 ### 5. Regional Bonus (Calculated Column)
 **Goal:** Use SWITCH to return a bonus percentage based on region.
@@ -48,6 +52,7 @@ SWITCH(
     0
 )
 ```
+**Visual Suggestion:** Table or Bar Chart (Bonus by Region).
 
 ---
 
@@ -59,6 +64,7 @@ SWITCH(
 ```dax
 Customer Label = Customers[CustomerName] & " (" & Customers[Region] & ")"
 ```
+**Visual Suggestion:** Table or Slicer.
 
 ### 7. Price Label (Calculated Column)
 **Goal:** Format UnitPrice as a currency string.
@@ -66,6 +72,7 @@ Customer Label = Customers[CustomerName] & " (" & Customers[Region] & ")"
 ```dax
 Price Label = FORMAT(Sales[UnitPrice], "$#,##0")
 ```
+**Visual Suggestion:** Table or Matrix (for row-level details).
 
 ---
 
@@ -77,6 +84,7 @@ Price Label = FORMAT(Sales[UnitPrice], "$#,##0")
 ```dax
 Days Since Order = DATEDIFF(Sales[OrderDate], TODAY(), DAY)
 ```
+**Visual Suggestion:** Scatter Chart or Histogram (to see aging distribution).
 
 ### 9. Month End Status (Calculated Column)
 **Goal:** Find if an order was placed on the last day of the month.
@@ -84,6 +92,7 @@ Days Since Order = DATEDIFF(Sales[OrderDate], TODAY(), DAY)
 ```dax
 Is Month End = IF(Sales[OrderDate] = EOMONTH(Sales[OrderDate], 0), "Yes", "No")
 ```
+**Visual Suggestion:** Slicer (to filter for specifically month-end orders).
 
 ---
 
@@ -95,6 +104,7 @@ Is Month End = IF(Sales[OrderDate] = EOMONTH(Sales[OrderDate], 0), "Yes", "No")
 ```dax
 Total Sales (All Regions) = CALCULATE([Total Sales], ALL(Customers[Region]))
 ```
+**Visual Suggestion:** Combined with [Total Sales] in a Bar Chart to show % of total.
 
 ### 11. Profit Margin (Measure)
 **Goal:** (Sales - Cost) / Sales. Handling zeros.
@@ -104,3 +114,4 @@ Profit Margin =
 VAR TotalCost = SUMX(Sales, RELATED(Products[CostPrice]) * Sales[Quantity])
 RETURN DIVIDE([Total Sales] - TotalCost, [Total Sales])
 ```
+**Visual Suggestion:** Gauge or Line Chart (Month over Month Margin).

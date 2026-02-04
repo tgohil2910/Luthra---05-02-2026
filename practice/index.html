@@ -134,6 +134,10 @@
                                 <span class="text-pbi-yellow">Total Sales</span> = <span
                                     class="text-blue-400">SUMX</span>(Sales, Sales[UnitPrice] * Sales[Quantity])
                             </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Card or Area Chart (Trend)</span>
+                            </div>
                         </div>
                         <!-- Ex 2 -->
                         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
@@ -151,6 +155,10 @@
                             <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
                                 <span class="text-pbi-yellow">Average Order Value</span> = <span
                                     class="text-blue-400">AVERAGE</span>(Sales[UnitPrice])
+                            </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Card or Gauge Chart</span>
                             </div>
                         </div>
                         <!-- Ex 3 -->
@@ -170,6 +178,10 @@
                             <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
                                 <span class="text-pbi-yellow">Order Count</span> = <span
                                     class="text-blue-400">COUNTROWS</span>(Sales)
+                            </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Card or KPI Visual</span>
                             </div>
                         </div>
                     </div>
@@ -202,6 +214,10 @@
                                     class="text-orange-300">5</span>, <span class="text-teal-300">"Bulk"</span>, <span
                                     class="text-teal-300">"Standard"</span>)
                             </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Pie or Donut Chart</span>
+                            </div>
                         </div>
                         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
                             <div class="flex justify-between items-start mb-2">
@@ -227,6 +243,10 @@
                                     class="text-orange-300">0.03</span>,<br>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-orange-300">0</span><br>
                                 )
+                            </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Table or Bar Chart by Region</span>
                             </div>
                         </div>
                     </div>
@@ -257,6 +277,10 @@
                                     class="text-teal-300">" ("</span> & Customers[Region] & <span
                                     class="text-teal-300">")"</span>
                             </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Table or Slicer</span>
+                            </div>
                         </div>
                         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
                             <div class="flex justify-between items-start mb-2">
@@ -275,6 +299,10 @@
                                 <span class="text-pbi-yellow">Price Label</span> = <span
                                     class="text-blue-400">FORMAT</span>(Sales[UnitPrice], <span
                                     class="text-teal-300">"$#,##0"</span>)
+                            </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Table or Matrix</span>
                             </div>
                         </div>
                     </div>
@@ -305,6 +333,10 @@
                                     class="text-blue-400">DATEDIFF</span>(Sales[OrderDate], <span
                                     class="text-blue-400">TODAY</span>(), <span class="text-purple-300">DAY</span>)
                             </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Scatter Chart or Histogram (Aging)</span>
+                            </div>
                         </div>
                         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
                             <div class="flex justify-between items-start mb-2">
@@ -325,6 +357,10 @@
                                     class="text-blue-400">EOMONTH</span>(Sales[OrderDate], <span
                                     class="text-orange-300">0</span>), <span class="text-teal-300">"Yes"</span>, <span
                                     class="text-teal-300">"No"</span>)
+                            </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Slicer</span>
                             </div>
                         </div>
                     </div>
@@ -354,6 +390,10 @@
                                     class="text-blue-400">CALCULATE</span>([Total Sales], <span
                                     class="text-blue-400">ALL</span>(Customers[Region]))
                             </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Bar Chart (% of Total)</span>
+                            </div>
                         </div>
                         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm exercise-card">
                             <div class="flex justify-between items-start mb-2">
@@ -373,6 +413,10 @@
                                     class="text-blue-400">RELATED</span>(Products[CostPrice]) * Sales[Quantity])<br>
                                 <span class="text-purple-300">RETURN</span> <span
                                     class="text-blue-400">DIVIDE</span>([Total Sales] - TotalCost, [Total Sales])
+                            </div>
+                            <div class="mt-2 flex items-center gap-1.5 text-[10px] text-gray-500 font-medium">
+                                <i class="fas fa-lightbulb text-pbi-yellow"></i>
+                                <span>Suggested Visual: Gauge or Line Chart (Month over Month)</span>
                             </div>
                         </div>
                     </div>
