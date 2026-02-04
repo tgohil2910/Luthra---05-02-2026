@@ -112,6 +112,7 @@ Total Sales (All Regions) = CALCULATE([Total Sales], ALL(Customers[Region]))
 ```dax
 Profit Margin = 
 VAR TotalCost = SUMX(Sales, RELATED(Products[CostPrice]) * Sales[Quantity])
+
 RETURN DIVIDE([Total Sales] - TotalCost, [Total Sales])
 ```
 **Visual Suggestion:** Gauge or Line Chart (Month over Month Margin).

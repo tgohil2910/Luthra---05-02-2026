@@ -407,10 +407,11 @@
                                     Solution</button>
                             </div>
                             <p class="text-sm text-gray-600 mb-3">(Sales - Cost) / Sales. Handling zeros.</p>
-                            <div class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white">
+                            <div
+                                class="solution-block bg-gray-900 rounded-lg p-3 font-mono text-xs text-white whitespace-pre-wrap">
                                 <span class="text-purple-300">VAR</span> TotalCost = <span
                                     class="text-blue-400">SUMX</span>(Sales, <span
-                                    class="text-blue-400">RELATED</span>(Products[CostPrice]) * Sales[Quantity])<br>
+                                    class="text-blue-400">RELATED</span>(Products[CostPrice]) * Sales[Quantity])<br><br>
                                 <span class="text-purple-300">RETURN</span> <span
                                     class="text-blue-400">DIVIDE</span>([Total Sales] - TotalCost, [Total Sales])
                             </div>
